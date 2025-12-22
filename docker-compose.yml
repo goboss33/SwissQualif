@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  swissqualif-app:
+    container_name: swissqualif-app
+    build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_SUPABASE_URL=https://ugellwlptpwgmmuqzrld.supabase.co
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_l9kZ9WYhcHt4k8KdjFOZPQ_XpqRSVZi
+      - SUPABASE_SERVICE_ROLE_KEY=sb_secret_5vf6GMOCIYvq5rlz22M8AA_9ha84Vap
