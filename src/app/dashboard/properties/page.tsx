@@ -45,14 +45,16 @@ export default async function PropertiesPage() {
                                     <TableCell>{property.rooms}</TableCell>
                                     <TableCell>
                                         <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${property.status === 'active' ? 'bg-green-100 text-green-800' :
-                                                property.status === 'sold' ? 'bg-blue-100 text-blue-800' :
-                                                    'bg-gray-100 text-gray-800'
+                                            property.status === 'sold' ? 'bg-blue-100 text-blue-800' :
+                                                'bg-gray-100 text-gray-800'
                                             }`}>
                                             {property.status}
                                         </span>
                                     </TableCell>
                                     <TableCell className="text-right">
-                                        <Button variant="ghost" size="sm">Modifier</Button>
+                                        <Link href={`/dashboard/properties/${property.id}`}>
+                                            <Button variant="ghost" size="sm">Modifier</Button>
+                                        </Link>
                                     </TableCell>
                                 </TableRow>
                             ))}
