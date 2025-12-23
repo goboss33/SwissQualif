@@ -26,6 +26,18 @@ const propertySchema = z.object({
     description_fr: z.string().optional(),
 })
 
+type PropertyFormData = {
+    reference: string
+    price_chf: number
+    street: string
+    zip_code: string
+    city: string
+    canton: string
+    rooms: number
+    surface_living: number
+    description_fr?: string
+}
+
 type PropertyFormProps = {
     initialData?: any
     propertyId?: string
@@ -39,8 +51,8 @@ export function PropertyForm({ initialData, propertyId }: PropertyFormProps) {
     const [files, setFiles] = useState<File[]>([])
     const supabase = createClient()
 
-    const form = useForm<z.infer<typeof propertySchema>>({
-        resolver: zodResolver(propertySchema),
+    const form = useForm<PropertyFormData>({
+        resolver: zodResolver(propertySchema) as any,
         defaultValues: initialData ? {
             reference: initialData.reference || '',
             price_chf: initialData.price_chf || 0,
@@ -88,7 +100,7 @@ export function PropertyForm({ initialData, propertyId }: PropertyFormProps) {
         setFiles(files.filter((_, i) => i !== index))
     }
 
-    async function onSubmit(values: z.infer<typeof propertySchema>) {
+    async function onSubmit(values: PropertyFormData) {
         setLoading(true)
         try {
             const { data: { user } } = await supabase.auth.getUser()

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Home, Building2, Users, Settings, LogOut } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import { AgencySwitcher } from './agency-switcher'
 
 const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: Home },
@@ -24,9 +25,13 @@ export function Sidebar() {
     return (
         <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r bg-white transition-transform overflow-y-auto">
             <div className="flex h-full flex-col px-3 py-4">
-                <div className="mb-10 px-2 py-2">
+                <div className="mb-4 px-2 py-2">
                     <h1 className="text-2xl font-bold text-slate-900">SwissQualif</h1>
                 </div>
+
+                {/* Agency Switcher for admins */}
+                <AgencySwitcher />
+
                 <nav className="flex-1 space-y-1">
                     {navItems.map((item) => (
                         <Link

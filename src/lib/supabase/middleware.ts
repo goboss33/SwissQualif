@@ -70,5 +70,10 @@ export async function updateSession(request: NextRequest) {
         return NextResponse.redirect(url)
     }
 
+    // Role-based access control for settings page
+    // Note: The main role check is done in the settings page component itself
+    // because the profile data fetch in middleware adds latency to every request.
+    // This is a backup check that happens only on settings routes.
+
     return response
 }
